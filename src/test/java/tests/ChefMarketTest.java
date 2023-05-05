@@ -42,8 +42,8 @@ public class ChefMarketTest extends TestBase {
 
     static Stream<Arguments> dataProvider() {
         return Stream.of(
-                Arguments.of(Locale.Русский, List.of("Меню", "Как это работает", "Блог о вкусном")),
-                Arguments.of(Locale.English, List.of("Menu", "How it works", "Blog about delicious"))
+                Arguments.of(Locale.RU.name(), List.of("Меню", "Как это работает", "Блог о вкусном")),
+                Arguments.of(Locale.EN.name(), List.of("Menu", "How it works", "Blog about delicious"))
         );
     }
 
@@ -51,7 +51,7 @@ public class ChefMarketTest extends TestBase {
     @ParameterizedTest(name = "на сайте выбран язык: {0} , используется MethodSource")
     void startPageTestMethodSource(Locale locale, List<String> expectedNames) {
         chefMarketStartPage.openPage();
-        chefMarketStartPage.setSiteLanguage(locale.name());
+        chefMarketStartPage.setSiteLanguage(locale.getLocale());
         chefMarketStartPage.checkNamesTranslate(expectedNames);
     }
 }
